@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>SoulTalk</title>
+  <style>
+    body {
+      background-color: #1e002e;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    button {
+      background-color: #b600a1;
+      border: none;
+      padding: 15px 25px;
+      color: white;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    #question-box {
+      margin-top: 40px;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+    .category-buttons {
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>SoulTalk</h1>
+  <p>Откровенные и глубокие вопросы про любовь, одиночество и отношения</p>
+
+  <button onclick="showRandom()">Случайный вопрос</button>
+  <button onclick="toggleCategories()">Категории</button>
+
+  <div class="category-buttons" id="categoryButtons">
+    <button onclick="showCategory('love')">Любовь и самоощущение</button>
+    <button onclick="showCategory('intimacy')">Близость и уязвимость</button>
+    <button onclick="showCategory('conflict')">Конфликты и честность</button>
+    <button onclick="showCategory('dreams')">Ожидания и мечты</button>
+  </div>
+
+  <div id="question-box"></div>
+
+  <script>
+    const questions = {
+      love: [
+        "Можно ли быть в отношениях и всё равно чувствовать себя одиноким?",
+        "Чего ты больше всего боишься в любви?",
+        "Что бы ты выбрал(а): узнать всю правду или остаться в счастливом неведении?",
+        "Можно ли любить, но не хотеть быть вместе?",
+        "Как ты понял(а), что влюблён(а)?",
+        "Ты больше боишься быть покинутым(ой) или поглощённым(ой)?"
+      ],
+      intimacy: [
+        "Когда ты в последний раз по-настоящему открывался(ась) перед кем-то?",
+        "Как ты переживаешь ссоры: замыкаешься или хочешь всё обсудить сразу?",
+        "Как ты проявляешь свою любовь — словами или действиями?",
+        "Какие мелочи в отношениях для тебя самые ценные?"
+      ],
+      conflict: [
+        "Нужно ли рассказывать партнёру о прошлом? Где граница откровенности?",
+        "Считается ли флирт без намерений — изменой?",
+        "Какие границы для тебя важны в отношениях?",
+        "Были ли у тебя отношения, в которых ты потерял(а) себя? Почему это произошло?"
+      ],
+      dreams: [
+        "Как понять, что ты с 'тем самым' человеком?",
+        "Ты бы хотел(а), чтобы в тебя влюбились 'как в кино' или 'как в жизни'?",
+        "Должны ли влюблённые быть лучшими друзьями или это разное?",
+        "Что важнее — совпадение ценностей или сильное притяжение?"
+      ]
+    };
+
+    const allQuestions = Object.values(questions).flat();
+
+    function showRandom() {
+      const q = allQuestions[Math.floor(Math.random() * allQuestions.length)];
+      document.getElementById("question-box").innerText = q;
+    }
+
+    function showCategory(cat) {
+      const q = questions[cat][Math.floor(Math.random() * questions[cat].length)];
+      document.getElementById("question-box").innerText = q;
+    }
+
+    function toggleCategories() {
+      const el = document.getElementById("categoryButtons");
+      el.style.display = el.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
+</html>
