@@ -3,34 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <title>SoulTalk</title>
-  <style>
-    body {
-      background-color: #1e002e;
-      color: #fff;
-      font-family: sans-serif;
-      text-align: center;
-      padding: 40px;
-    }
+<style>
+  body {
+    background-color: #1e002e;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    padding: 30px 20px;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 34px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #c9c9c9;
+  }
+
+  button {
+    background: linear-gradient(135deg, #d400b5, #7f00c9);
+    border: none;
+    padding: 15px 25px;
+    color: white;
+    font-size: 17px;
+    margin: 10px auto;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 320px;
+    display: block;
+    transition: transform 0.2s ease;
+  }
+
+  button:hover {
+    transform: scale(1.04);
+  }
+
+  #question-box {
+    margin-top: 40px;
+    font-size: 20px;
+    line-height: 1.6;
+    padding: 30px 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #2a0052;
+    border-radius: 18px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease;
+  }
+
+  .category-buttons {
+    margin-top: 20px;
+    display: none;
+  }
+
+  @media (min-width: 768px) {
     button {
-      background-color: #b600a1;
-      border: none;
-      padding: 15px 25px;
-      color: white;
-      font-size: 16px;
-      margin: 10px;
-      cursor: pointer;
-      border-radius: 8px;
+      width: auto;
     }
+
     #question-box {
-      margin-top: 40px;
-      font-size: 20px;
-      line-height: 1.5;
+      font-size: 22px;
     }
-    .category-buttons {
-      margin-top: 20px;
-      display: none;
-    }
-  </style>
+  }
+</style> 
 </head>
 <body>
   <h1>SoulTalk</h1>
