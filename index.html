@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      background: url('https://i.imgur.com/r6tIFN3.jpg') center/cover no-repeat fixed;
+      background-color: #1e002e;
       color: #f0f0f0;
       font-family: 'Manrope', sans-serif;
       margin: 0;
@@ -16,7 +16,6 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      backdrop-filter: brightness(0.8);
     }
 
     h1 {
@@ -164,9 +163,9 @@
   <script>
     const questions = {
       love: [
-        "Можно ли быть в отношениях и всё равно чувствовать себя одиноким?","Чего ты больше всего боишься в любви?",
-        "Можно ли любить, но не хотеть быть вместе?",
-        "Ты больше боишься быть покинутым(ой) или поглощённым(ой)?"
+        "Можно ли быть в отношениях и всё равно чувствовать себя одиноким?",
+        "Чего ты больше всего боишься в любви?",
+        "Можно ли любить, но не хотеть быть вместе?","Ты больше боишься быть покинутым(ой) или поглощённым(ой)?"
       ],
       intimacy: [
         "Когда ты в последний раз по-настоящему открывался(ась) перед кем-то?",
@@ -193,7 +192,6 @@
     let currentCategory = null;
     let currentList = [];
     let lastQuestion = null;
-    let flipped = false;
 
     function flipCardText(newText) {
       flipCard.classList.add("flip");
