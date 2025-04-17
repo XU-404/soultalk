@@ -5,18 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoulTalk</title>
   <style>
-    :root {
-      --bg-color: #1e002e;
-      --text-color: #f0f0f0;
-      --subtle-text: #dcdcdc;
-      --button-gradient: linear-gradient(135deg, #d400b5, #7f00c9);
-      --box-bg: #2a0052;
-      --category-bg: #4e1d6f;
-    }
-
     body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background-color: #1e002e;
+      color: #f0f0f0;
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 40px 20px;
@@ -24,7 +15,6 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     h1 {
@@ -35,18 +25,18 @@
 
     .intro p {
       font-size: 16px;
-      color: var(--subtle-text);
+      color: #dcdcdc;
       text-align: center;
       max-width: 600px;
       line-height: 1.5;
     }
 
     .intro p strong {
-      color: var(--text-color);
+      color: #f0f0f0;
     }
 
     button {
-      background: var(--button-gradient);
+      background: linear-gradient(135deg, #d400b5, #7f00c9);
       border: none;
       padding: 14px 24px;
       color: white;
@@ -67,7 +57,7 @@
 
     #question-box {
       margin-top: 30px;
-      background-color: var(--box-bg);
+      background-color: #2a0052;
       padding: 30px 24px;
       font-size: 20px;
       border-radius: 18px;
@@ -91,7 +81,7 @@
     }
 
     .category-buttons button {
-      background: var(--category-bg);
+      background: #4e1d6f;
       font-size: 15px;
       padding: 12px 20px;
       margin: 6px auto;
@@ -140,7 +130,9 @@
     <button onclick="chooseCategory('dreams')">Ожидания и мечты</button>
   </div>
 
-  <div id="question-box" role="region" aria-live="polite">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
+  <div id="question-box" role="region" aria-live="polite">
+    Нажми «Случайный вопрос» — и пусть начнётся душевный диалог
+  </div>
 
   <button id="next-question" onclick="nextQuestion()">Дальше</button>
 
@@ -230,4 +222,3 @@
   </script>
 </body>
 </html>
-
