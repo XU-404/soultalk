@@ -4,23 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoulTalk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #1e002e;
+      background: url('https://i.imgur.com/r6tIFN3.jpg') center/cover no-repeat fixed;
       color: #f0f0f0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Manrope', sans-serif;
       margin: 0;
       padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      backdrop-filter: brightness(0.8);
     }
 
     h1 {
-      font-size: 30px;
-      margin-bottom: 16px;
+      font-size: 32px;
+      margin-bottom: 20px;
       text-align: center;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .intro p {
@@ -28,7 +32,8 @@
       color: #dcdcdc;
       text-align: center;
       max-width: 600px;
-      line-height: 1.5;
+      line-height: 1.6;
+      margin-bottom: 24px;
     }
 
     .intro p strong {
@@ -40,37 +45,50 @@
       border: none;
       padding: 14px 24px;
       color: white;
-      font-size: 17px;
-      margin: 12px auto;
+      font-size: 16px;
+      margin: 10px auto;
       cursor: pointer;
       border-radius: 14px;
       width: 90%;
       max-width: 300px;
-      transition: transform 0.2s ease;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
       display: block;
+      font-weight: 600;
+      letter-spacing: 0.3px;
     }
 
     button:hover {
       transform: scale(1.03);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     }
 
     #question-box {
-      margin-top: 30px;
-      background-color: #2a0052;
-      padding: 30px 24px;
-      font-size: 20px;
-      border-radius: 18px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-      max-width: 600px;
+      perspective: 1000px;
       width: 100%;
-      transition: opacity 0.3s ease;
+      max-width: 640px;
+      min-height: 130px;
+      margin-top: 30px;
+    }
+
+    .flip-card-inner {
+      background: linear-gradient(145deg, #2a0052, #3a0072);
+      padding: 36px 28px;
+      border-radius: 20px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
       text-align: center;
-      line-height: 1.6;
-      min-height: 120px;
+      font-size: 22px;
+      line-height: 1.8;
+      color: #f9f9f9;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .flip {
+      transform: rotateY(180deg);
     }
 
     .category-buttons {
@@ -87,6 +105,7 @@
       margin: 6px auto;
       width: 100%;
       border-radius: 12px;
+      font-weight: 500;
     }
 
     #next-question {
@@ -94,18 +113,24 @@
       margin-top: 20px;
     }
 
-    @media (min-width: 768px) {
+    @media (max-width: 480px) {
       h1 {
-        font-size: 36px;
+        font-size: 26px;
       }
 
       .intro p {
-        font-size: 18px;
-        line-height: 1.7;
+        font-size: 15px;
+        line-height: 1.6;
       }
 
-      #question-box {
-        font-size: 22px;
+      .flip-card-inner {
+        font-size: 19px;
+        padding: 24px;
+      }
+
+      button {
+        font-size: 15px;
+        padding: 12px 20px;
       }
     }
   </style>
@@ -130,15 +155,16 @@
     <button onclick="chooseCategory('dreams')">Ожидания и мечты</button>
   </div>
 
-  <div id="question-box">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
+  <div id="question-box">
+    <div class="flip-card-inner" id="flipCard">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
+  </div>
 
   <button id="next-question" onclick="nextQuestion()">Дальше</button>
 
   <script>
     const questions = {
       love: [
-        "Можно ли быть в отношениях и всё равно чувствовать себя одиноким?",
-        "Чего ты больше всего боишься в любви?",
+        "Можно ли быть в отношениях и всё равно чувствовать себя одиноким?","Чего ты больше всего боишься в любви?",
         "Можно ли любить, но не хотеть быть вместе?",
         "Ты больше боишься быть покинутым(ой) или поглощённым(ой)?"
       ],
@@ -154,25 +180,27 @@
       ],
       dreams: [
         "Как понять, что ты с 'тем самым' человеком?",
-        "Ты бы хотел(а), чтобы в тебя влюбились 'как в кино' или 'как в жизни'?","Что важнее — совпадение ценностей или сильное притяжение?"
+        "Ты бы хотел(а), чтобы в тебя влюбились 'как в кино' или 'как в жизни'?",
+        "Что важнее — совпадение ценностей или сильное притяжение?"
       ]
     };
 
     const allQuestions = Object.values(questions).flat();
-    const box = document.getElementById("question-box");
+    const flipCard = document.getElementById("flipCard");
     const nextBtn = document.getElementById("next-question");
     const categoryButtons = document.getElementById("categoryButtons");
 
     let currentCategory = null;
     let currentList = [];
     let lastQuestion = null;
+    let flipped = false;
 
-    function fadeOutIn(callback) {
-      box.style.opacity = 0;
+    function flipCardText(newText) {
+      flipCard.classList.add("flip");
       setTimeout(() => {
-        callback();
-        box.style.opacity = 1;
-      }, 250);
+        flipCard.textContent = newText;
+        flipCard.classList.remove("flip");
+      }, 300);
     }
 
     function getRandomQuestion(list) {
@@ -201,10 +229,8 @@
     }
 
     function showNextFromCurrent() {
-      fadeOutIn(() => {
-        const q = getRandomQuestion(currentList);
-        box.innerText = q;
-      });
+      const q = getRandomQuestion(currentList);
+      flipCardText(q);
     }
 
     function toggleCategories() {
