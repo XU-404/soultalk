@@ -63,14 +63,13 @@
     }
 
     #question-box {
-      perspective: 1000px;
       width: 100%;
       max-width: 640px;
       min-height: 130px;
       margin-top: 30px;
     }
 
-    .flip-card-inner {
+    .question-card {
       background: linear-gradient(145deg, #2a0052, #3a0072);
       padding: 36px 28px;
       border-radius: 20px;
@@ -79,15 +78,11 @@
       font-size: 22px;
       line-height: 1.8;
       color: #f9f9f9;
-      transform-style: preserve-3d;
-      transition: transform 0.6s ease;
+      transition: opacity 0.4s ease;
+      opacity: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .flip {
-      transform: rotateY(180deg);
     }
 
     .category-buttons {
@@ -122,7 +117,7 @@
         line-height: 1.6;
       }
 
-      .flip-card-inner {
+      .question-card {
         font-size: 19px;
         padding: 24px;
       }
@@ -155,7 +150,7 @@
   </div>
 
   <div id="question-box">
-    <div class="flip-card-inner" id="flipCard">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
+    <div class="question-card" id="questionCard">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
   </div>
 
   <button id="next-question" onclick="nextQuestion()">Дальше</button>
@@ -165,10 +160,10 @@
       love: [
         "Можно ли быть в отношениях и всё равно чувствовать себя одиноким?",
         "Чего ты больше всего боишься в любви?",
-        "Можно ли любить, но не хотеть быть вместе?","Ты больше боишься быть покинутым(ой) или поглощённым(ой)?"
+        "Можно ли любить, но не хотеть быть вместе?",
+        "Ты больше боишься быть покинутым(ой) или поглощённым(ой)?"
       ],
-      intimacy: [
-        "Когда ты в последний раз по-настоящему открывался(ась) перед кем-то?",
+      intimacy: ["Когда ты в последний раз по-настоящему открывался(ась) перед кем-то?",
         "Как ты проявляешь свою любовь — словами или действиями?",
         "Какие мелочи в отношениях для тебя самые ценные?"
       ],
@@ -185,7 +180,7 @@
     };
 
     const allQuestions = Object.values(questions).flat();
-    const flipCard = document.getElementById("flipCard");
+    const questionCard = document.getElementById("questionCard");
     const nextBtn = document.getElementById("next-question");
     const categoryButtons = document.getElementById("categoryButtons");
 
@@ -193,12 +188,12 @@
     let currentList = [];
     let lastQuestion = null;
 
-    function flipCardText(newText) {
-      flipCard.classList.add("flip");
+    function fadeToNewText(newText) {
+      questionCard.style.opacity = 0;
       setTimeout(() => {
-        flipCard.textContent = newText;
-        flipCard.classList.remove("flip");
-      }, 300);
+        questionCard.textContent = newText;
+        questionCard.style.opacity = 1;
+      }, 250);
     }
 
     function getRandomQuestion(list) {
@@ -228,7 +223,7 @@
 
     function showNextFromCurrent() {
       const q = getRandomQuestion(currentList);
-      flipCardText(q);
+      fadeToNewText(q);
     }
 
     function toggleCategories() {
