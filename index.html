@@ -1,113 +1,143 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoulTalk</title>
-<style>
-  body {
-    background-color: #1e002e;
-    color: #fff;
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-  }
+  <style>
+    :root {
+      --bg-color: #1e002e;
+      --text-color: #f0f0f0;
+      --subtle-text: #dcdcdc;
+      --button-gradient: linear-gradient(135deg, #d400b5, #7f00c9);
+      --box-bg: #2a0052;
+      --category-bg: #4e1d6f;
+    }
 
-  h1 {
-    font-size: 30px;
-    margin-bottom: 16px;
-    text-align: center;
-  }
+    body.light-theme {
+      --bg-color: #fdfbff;
+      --text-color: #1e002e;
+      --subtle-text: #444;
+      --button-gradient: linear-gradient(135deg, #9b00e8, #c966ff);
+      --box-bg: #e7d3ff;
+      --category-bg: #d2b7ff;
+    }
 
-  .intro p {
-    font-size: 16px;
-    color: #dcdcdc;
-    text-align: center;
-    max-width: 600px;
-    line-height: 1.5;
-  }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-  .intro p strong {
-    color: #ffffff;
-  }
-
-  button {
-    background: linear-gradient(135deg, #d400b5, #7f00c9);
-    border: none;
-    padding: 14px 24px;
-    color: white;
-    font-size: 17px;
-    margin: 12px auto;
-    cursor: pointer;
-    border-radius: 14px;
-    width: 90%;
-    max-width: 300px;
-    transition: transform 0.2s ease;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    display: block;
-  }
-
-  button:hover {
-    transform: scale(1.03);
-  }
-
-  #question-box {
-    margin-top: 30px;
-    background-color: #2a0052;
-    padding: 30px 24px;
-    font-size: 20px;
-    border-radius: 18px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-    max-width: 600px;
-    width: 100%;
-    transition: opacity 0.3s ease;
-    text-align: center;
-    line-height: 1.6;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .category-buttons {
-    margin-top: 20px;
-    display: none;
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .category-buttons button {
-    background: #4e1d6f;
-    font-size: 15px;
-    padding: 12px 20px;
-    margin: 6px auto;
-    width: 100%;
-    border-radius: 12px;
-  }
-
-  #next-category {
-    display: none;
-    margin-top: 20px;
-  }
-
-  @media (min-width: 768px) {
     h1 {
-      font-size: 36px;
+      font-size: 30px;
+      margin-bottom: 16px;
+      text-align: center;
     }
 
     .intro p {
-      font-size: 18px;
-      line-height: 1.7;
+      font-size: 16px;
+      color: var(--subtle-text);
+      text-align: center;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    .intro p strong {
+      color: var(--text-color);
+    }
+
+    button {
+      background: var(--button-gradient);
+      border: none;
+      padding: 14px 24px;
+      color: white;
+      font-size: 17px;
+      margin: 12px auto;
+      cursor: pointer;
+      border-radius: 14px;
+      width: 90%;
+      max-width: 300px;
+      transition: transform 0.2s ease;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      display: block;
+    }
+
+    button:hover {
+      transform: scale(1.03);
     }
 
     #question-box {
-      font-size: 22px;
+      margin-top: 30px;
+      background-color: var(--box-bg);
+      padding: 30px 24px;
+      font-size: 20px;
+      border-radius: 18px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      max-width: 600px;
+      width: 100%;
+      transition: opacity 0.3s ease;
+      text-align: center;
+      line-height: 1.6;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-  }
-</style>
+
+    .category-buttons {
+      margin-top: 20px;
+      display: none;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .category-buttons button {
+      background: var(--category-bg);
+      font-size: 15px;
+      padding: 12px 20px;
+      margin: 6px auto;
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    #next-question {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .theme-toggle {
+      font-size: 14px;
+      background: transparent;
+      color: var(--subtle-text);
+      text-decoration: underline;
+      border: none;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .intro p {
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      #question-box {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>SoulTalk</h1>
@@ -119,8 +149,8 @@
     </p>
   </div>
 
-  <button onclick="startRandom()">Случайный вопрос</button>
-  <button onclick="toggleCategories()">Категории</button>
+  <button onclick="startRandom()" aria-label="Показать случайный вопрос">Случайный вопрос</button>
+  <button onclick="toggleCategories()" aria-label="Показать категории">Категории</button>
 
   <div class="category-buttons" id="categoryButtons">
     <button onclick="chooseCategory('love')">Любовь и самоощущение</button>
@@ -129,9 +159,11 @@
     <button onclick="chooseCategory('dreams')">Ожидания и мечты</button>
   </div>
 
-  <div id="question-box">Нажми кнопку, чтобы получить вопрос</div>
+  <div id="question-box" role="region" aria-live="polite">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
 
   <button id="next-question" onclick="nextQuestion()">Дальше</button>
+
+  <button class="theme-toggle" onclick="toggleTheme()">Переключить тему</button>
 
   <script>
     const questions = {
@@ -165,6 +197,7 @@
 
     let currentCategory = null;
     let currentList = [];
+    let lastQuestion = null;
 
     function fadeOutIn(callback) {
       box.style.opacity = 0;
@@ -175,7 +208,12 @@
     }
 
     function getRandomQuestion(list) {
-      return list[Math.floor(Math.random() * list.length)];
+      let q;
+      do {
+        q = list[Math.floor(Math.random() * list.length)];
+      } while (q === lastQuestion && list.length > 1);
+      lastQuestion = q;
+      return q;
     }
 
     function startRandom() {
@@ -202,16 +240,17 @@
     }
 
     function toggleCategories() {
-      if (categoryButtons.style.display === "block") {
-        categoryButtons.style.display = "none";
-      } else {
-        categoryButtons.style.display = "block";
-      }
+      categoryButtons.style.display =
+        categoryButtons.style.display === "block" ? "none" : "block";
     }
 
     function nextQuestion() {
       if (!currentList.length) return;
       showNextFromCurrent();
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light-theme");
     }
   </script>
 </body>
