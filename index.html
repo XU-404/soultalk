@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #1e002e;
+      background: radial-gradient(circle at top left, #320048, #1e002e);
       color: #f0f0f0;
       font-family: 'Manrope', sans-serif;
       margin: 0;
@@ -16,6 +16,7 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      box-sizing: border-box;
     }
 
     h1 {
@@ -65,7 +66,6 @@
     #question-box {
       width: 100%;
       max-width: 640px;
-      min-height: 130px;
       margin-top: 30px;
     }
 
@@ -82,10 +82,16 @@
       opacity: 1;
       width: 100%;
       margin: 30px 0;
-      flex-grow: 1;
+      height: 260px;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow-y: auto;
+    }
+
+    .question-card::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
     }
 
     .category-buttons {
@@ -111,23 +117,37 @@
     }
 
     @media (max-width: 480px) {
+      body {
+        padding: 24px 12px;
+      }
+
       h1 {
-        font-size: 26px;
+        font-size: 24px;
+        margin-bottom: 16px;
       }
 
       .intro p {
-        font-size: 15px;
-        line-height: 1.6;
-      }
-
-      .question-card {
-        font-size: 19px;
-        padding: 24px;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 20px;
       }
 
       button {
-        font-size: 15px;
-        padding: 12px 20px;
+        font-size: 14px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        max-width: 100%;
+      }
+
+      .category-buttons button {
+        font-size: 14px;
+        padding: 10px 16px;
+      }
+
+      .question-card {
+        font-size: 18px;
+        padding: 20px;
+        height: 220px;
       }
     }
   </style>
@@ -152,8 +172,7 @@
     <button onclick="chooseCategory('dreams')">Ожидания и мечты</button>
   </div>
 
-  <div id="question-box">
-    <div class="question-card" id="questionCard">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
+  <div id="question-box"><div class="question-card" id="questionCard">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
   </div>
 
   <button id="next-question" onclick="nextQuestion()">Дальше</button>
@@ -163,7 +182,8 @@
       love: [
         "Можно ли быть в отношениях и всё равно чувствовать себя одиноким?",
         "Чего ты больше всего боишься в любви?",
-        "Что бы ты выбрал(а): узнать всю правду или остаться в счастливом неведении?","Можно ли любить, но не хотеть быть вместе?",
+        "Что бы ты выбрал(а): узнать всю правду или остаться в счастливом неведении?",
+        "Можно ли любить, но не хотеть быть вместе?",
         "Как ты понял(а), что влюблён(а)?",
         "Ты больше боишься быть покинутым(ой) или поглощённым(ой)?",
         "Что ты пытаешься компенсировать через отношения — и осознаёшь ли ты это?",
@@ -243,8 +263,7 @@
 
     function chooseCategory(cat) {
       currentCategory = cat;
-      currentList = questions[cat];
-      categoryButtons.style.display = "none";
+      currentList = questions[cat];categoryButtons.style.display = "none";
       nextBtn.style.display = "block";
       showNextFromCurrent();
     }
@@ -260,7 +279,8 @@
     }
 
     function nextQuestion() {
-      if (!currentList.length) return;showNextFromCurrent();
+      if (!currentList.length) return;
+      showNextFromCurrent();
     }
   </script>
 </body>
