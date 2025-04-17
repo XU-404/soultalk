@@ -14,15 +14,6 @@
       --category-bg: #4e1d6f;
     }
 
-    body.light-theme {
-      --bg-color: #fdfbff;
-      --text-color: #1e002e;
-      --subtle-text: #444;
-      --button-gradient: linear-gradient(135deg, #9b00e8, #c966ff);
-      --box-bg: #e7d3ff;
-      --category-bg: #d2b7ff;
-    }
-
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
@@ -113,16 +104,6 @@
       margin-top: 20px;
     }
 
-    .theme-toggle {
-      font-size: 14px;
-      background: transparent;
-      color: var(--subtle-text);
-      text-decoration: underline;
-      border: none;
-      margin-bottom: 10px;
-      cursor: pointer;
-    }
-
     @media (min-width: 768px) {
       h1 {
         font-size: 36px;
@@ -162,8 +143,6 @@
   <div id="question-box" role="region" aria-live="polite">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
 
   <button id="next-question" onclick="nextQuestion()">Дальше</button>
-
-  <button class="theme-toggle" onclick="toggleTheme()">Переключить тему</button>
 
   <script>
     const questions = {
@@ -248,10 +227,7 @@
       if (!currentList.length) return;
       showNextFromCurrent();
     }
-
-    function toggleTheme() {
-      document.body.classList.toggle("light-theme");
-    }
   </script>
 </body>
 </html>
+
