@@ -32,7 +32,7 @@
     }
 
     .intro p strong {
-      color: #f0f0f0;
+      color: #ffffff;
     }
 
     button {
@@ -120,8 +120,8 @@
     </p>
   </div>
 
-  <button onclick="startRandom()" aria-label="Показать случайный вопрос">Случайный вопрос</button>
-  <button onclick="toggleCategories()" aria-label="Показать категории">Категории</button>
+  <button onclick="startRandom()">Случайный вопрос</button>
+  <button onclick="toggleCategories()">Категории</button>
 
   <div class="category-buttons" id="categoryButtons">
     <button onclick="chooseCategory('love')">Любовь и самоощущение</button>
@@ -130,9 +130,7 @@
     <button onclick="chooseCategory('dreams')">Ожидания и мечты</button>
   </div>
 
-  <div id="question-box" role="region" aria-live="polite">
-    Нажми «Случайный вопрос» — и пусть начнётся душевный диалог
-  </div>
+  <div id="question-box">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
 
   <button id="next-question" onclick="nextQuestion()">Дальше</button>
 
@@ -156,8 +154,7 @@
       ],
       dreams: [
         "Как понять, что ты с 'тем самым' человеком?",
-        "Ты бы хотел(а), чтобы в тебя влюбились 'как в кино' или 'как в жизни'?",
-        "Что важнее — совпадение ценностей или сильное притяжение?"
+        "Ты бы хотел(а), чтобы в тебя влюбились 'как в кино' или 'как в жизни'?","Что важнее — совпадение ценностей или сильное притяжение?"
       ]
     };
 
