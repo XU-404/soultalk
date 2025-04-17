@@ -119,7 +119,7 @@
     </p>
   </div>
 
-  <button onclick="showRandom()">Случайный вопрос</button>
+  <button onclick="startRandom()">Случайный вопрос</button>
   <button onclick="toggleCategories()">Категории</button>
 
   <div class="category-buttons" id="categoryButtons">
@@ -131,7 +131,7 @@
 
   <div id="question-box">Нажми кнопку, чтобы получить вопрос</div>
 
-  <button id="next-category" onclick="nextCategoryQuestion()">Дальше</button>
+  <button id="next-question" onclick="nextQuestion()">Дальше</button>
 
   <script>
     const questions = {
@@ -160,8 +160,11 @@
 
     const allQuestions = Object.values(questions).flat();
     const box = document.getElementById("question-box");
-    const nextCatBtn = document.getElementById("next-category");
+    const nextBtn = document.getElementById("next-question");
+    const categoryButtons = document.getElementById("categoryButtons");
+
     let currentCategory = null;
+    let currentList = [];
 
     function fadeOutIn(callback) {
       box.style.opacity = 0;
@@ -171,33 +174,44 @@
       }, 250);
     }
 
-    function showRandom() {
+    function getRandomQuestion(list) {
+      return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function startRandom() {
       currentCategory = null;
-      nextCatBtn.style.display = "none";
+      currentList = allQuestions;
+      categoryButtons.style.display = "none";
+      nextBtn.style.display = "block";
+      showNextFromCurrent();
+    }
+
+    function chooseCategory(cat) {
+      currentCategory = cat;
+      currentList = questions[cat];
+      categoryButtons.style.display = "none";
+      nextBtn.style.display = "block";
+      showNextFromCurrent();
+    }
+
+    function showNextFromCurrent() {
       fadeOutIn(() => {
-        const q = allQuestions[Math.floor(Math.random() * allQuestions.length)];
+        const q = getRandomQuestion(currentList);
         box.innerText = q;
       });
     }
 
     function toggleCategories() {
-      const el = document.getElementById("categoryButtons");
-      el.style.display = el.style.display === "block" ? "none" : "block";
-      nextCatBtn.style.display = "none";
+      if (categoryButtons.style.display === "block") {
+        categoryButtons.style.display = "none";
+      } else {
+        categoryButtons.style.display = "block";
+      }
     }
 
-    function chooseCategory(cat) {
-      currentCategory = cat;
-      nextCatBtn.style.display = "block";
-      nextCategoryQuestion();
-    }
-
-    function nextCategoryQuestion() {
-      if (!currentCategory) return;
-      fadeOutIn(() => {
-        const q = questions[currentCategory][Math.floor(Math.random() * questions[currentCategory].length)];
-        box.innerText = q;
-      });
+    function nextQuestion() {
+      if (!currentList.length) return;
+      showNextFromCurrent();
     }
   </script>
 </body>
