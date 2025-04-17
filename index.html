@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      background: radial-gradient(circle at top left, #320048, #1e002e);
+     background: radial-gradient(circle at top left, #48006b, #2a0042);
       color: #f0f0f0;
       font-family: 'Manrope', sans-serif;
       margin: 0;
@@ -20,12 +20,15 @@
     }
 
     h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
-      text-align: center;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
+  font-size: 36px;
+  margin-bottom: 24px;
+  text-align: center;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff8ae2, #a174ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
 
     .intro p {
       font-size: 16px;
@@ -70,24 +73,24 @@
     }
 
     .question-card {
-      background: linear-gradient(145deg, #2a0052, #3a0072);
-      padding: 48px 32px;
-      border-radius: 24px;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      font-size: 24px;
-      line-height: 1.9;
-      color: #f9f9f9;
-      transition: opacity 0.4s ease;
-      opacity: 1;
-      width: 100%;
-      margin: 30px 0;
-      height: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow-y: auto;
-    }
+  background: linear-gradient(145deg, #2a0052, #3a0072);
+  padding: 32px 24px;
+  border-radius: 20px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.7;
+  color: #f9f9f9;
+  transition: opacity 0.4s ease;
+  opacity: 1;
+  width: 100%;
+  margin: 20px 0;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
 
     .question-card::-webkit-scrollbar {
       width: 0;
@@ -145,10 +148,10 @@
       }
 
       .question-card {
-        font-size: 18px;
-        padding: 20px;
-        height: 220px;
-      }
+  font-size: 16px;
+  padding: 20px 16px;
+  min-height: 140px;
+}
     }
   </style>
 </head>
