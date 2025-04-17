@@ -65,7 +65,7 @@
     #question-box {
       width: 100%;
       max-width: 640px;
-      height: 180px;
+      min-height: 130px;
       margin-top: 30px;
     }
 
@@ -78,13 +78,11 @@
       font-size: 22px;
       line-height: 1.8;
       color: #f9f9f9;
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transition: opacity 0.4s ease;
       opacity: 1;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
     }
 
     .category-buttons {
@@ -162,10 +160,10 @@
       love: [
         "Можно ли быть в отношениях и всё равно чувствовать себя одиноким?",
         "Чего ты больше всего боишься в любви?",
-        "Можно ли любить, но не хотеть быть вместе?","Ты больше боишься быть покинутым(ой) или поглощённым(ой)?"
+        "Можно ли любить, но не хотеть быть вместе?",
+        "Ты больше боишься быть покинутым(ой) или поглощённым(ой)?"
       ],
-      intimacy: [
-        "Когда ты в последний раз по-настоящему открывался(ась) перед кем-то?",
+      intimacy: ["Когда ты в последний раз по-настоящему открывался(ась) перед кем-то?",
         "Как ты проявляешь свою любовь — словами или действиями?",
         "Какие мелочи в отношениях для тебя самые ценные?"
       ],
@@ -192,12 +190,10 @@
 
     function fadeToNewText(newText) {
       questionCard.style.opacity = 0;
-      questionCard.style.transform = "translateY(10px)";
       setTimeout(() => {
         questionCard.textContent = newText;
         questionCard.style.opacity = 1;
-        questionCard.style.transform = "translateY(0)";
-      }, 200);
+      }, 250);
     }
 
     function getRandomQuestion(list) {
