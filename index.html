@@ -82,12 +82,39 @@
     #question-box {
       font-size: 22px;
     }
+  }.intro {
+  margin: 20px 0 30px;
+  padding: 10px 16px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.intro p {
+  font-size: 16px;
+  color: #dcdcdc;
+  text-align: center;
+}
+
+.intro p strong {
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .intro p {
+    font-size: 18px;
+    line-height: 1.7;
   }
+}
 </style>
 </head>
 <body>
   <h1>SoulTalk</h1>
- <p>Откровенные, душевные и спорные вопросы про отношения, одиночество, любовь и близость. Отвечай сам(а), обсуждай с друзьями или запускай тёплый разговор с кем-то важным.</p>
+ <div class="intro">
+  <p>
+    <strong>Откровенные, душевные и спорные вопросы</strong> про отношения, одиночество, любовь и близость.<br><br>
+    Отвечай сам(а), обсуждай с друзьями или запускай тёплый разговор с кем-то важным.
+  </p>
+</div>
 
   <button onclick="showRandom()">Случайный вопрос</button>
   <button onclick="toggleCategories()">Категории</button>
