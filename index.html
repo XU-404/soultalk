@@ -9,41 +9,45 @@
     color: #fff;
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding: 40px 20px;
   }
 
   h1 {
     font-size: 30px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     text-align: center;
   }
 
-  p {
+  .intro p {
     font-size: 16px;
-    color: #d6d6d6;
+    color: #dcdcdc;
     text-align: center;
-    max-width: 500px;
-    line-height: 1.4;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .intro p strong {
+    color: #ffffff;
   }
 
   button {
     background: linear-gradient(135deg, #d400b5, #7f00c9);
     border: none;
-    padding: 15px 25px;
+    padding: 14px 24px;
     color: white;
     font-size: 17px;
     margin: 12px auto;
     cursor: pointer;
     border-radius: 14px;
-    width: 100%;
-    max-width: 320px;
+    width: 90%;
+    max-width: 300px;
     transition: transform 0.2s ease;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    display: block;
   }
 
   button:hover {
@@ -53,25 +57,40 @@
   #question-box {
     margin-top: 30px;
     background-color: #2a0052;
-    padding: 24px 20px;
+    padding: 30px 24px;
     font-size: 20px;
-    border-radius: 16px;
+    border-radius: 18px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     max-width: 600px;
     width: 100%;
     transition: opacity 0.3s ease;
     text-align: center;
     line-height: 1.6;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .category-buttons {
     margin-top: 20px;
     display: none;
     width: 100%;
+    max-width: 320px;
   }
 
   .category-buttons button {
-    margin-top: 10px;
+    background: #4e1d6f;
+    font-size: 15px;
+    padding: 12px 20px;
+    margin: 6px auto;
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  #next-category {
+    display: none;
+    margin-top: 20px;
   }
 
   @media (min-width: 768px) {
@@ -79,100 +98,106 @@
       font-size: 36px;
     }
 
+    .intro p {
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
     #question-box {
       font-size: 22px;
     }
-  }.intro {
-  margin: 20px 0 30px;
-  padding: 10px 16px;
-  max-width: 600px;
-  line-height: 1.5;
-}
-
-.intro p {
-  font-size: 16px;
-  color: #dcdcdc;
-  text-align: center;
-}
-
-.intro p strong {
-  color: #ffffff;
-}
-
-@media (min-width: 768px) {
-  .intro p {
-    font-size: 18px;
-    line-height: 1.7;
   }
-}
 </style>
 </head>
 <body>
   <h1>SoulTalk</h1>
- <div class="intro">
-  <p>
-    <strong>Откровенные, душевные и спорные вопросы</strong> про отношения, одиночество, любовь и близость.<br><br>
-    Отвечай сам(а), обсуждай с друзьями или запускай тёплый разговор с кем-то важным.
-  </p>
-</div>
+
+  <div class="intro">
+    <p>
+      <strong>Откровенные, душевные и спорные вопросы</strong> про отношения, одиночество, любовь и близость.<br><br>
+      Отвечай сам(а), обсуждай с друзьями или запускай тёплый разговор с кем-то важным.
+    </p>
+  </div>
 
   <button onclick="showRandom()">Случайный вопрос</button>
   <button onclick="toggleCategories()">Категории</button>
 
   <div class="category-buttons" id="categoryButtons">
-    <button onclick="showCategory('love')">Любовь и самоощущение</button>
-    <button onclick="showCategory('intimacy')">Близость и уязвимость</button>
-    <button onclick="showCategory('conflict')">Конфликты и честность</button>
-    <button onclick="showCategory('dreams')">Ожидания и мечты</button>
+    <button onclick="chooseCategory('love')">Любовь и самоощущение</button>
+    <button onclick="chooseCategory('intimacy')">Близость и уязвимость</button>
+    <button onclick="chooseCategory('conflict')">Конфликты и честность</button>
+    <button onclick="chooseCategory('dreams')">Ожидания и мечты</button>
   </div>
 
-  <div id="question-box"></div>
+  <div id="question-box">Нажми кнопку, чтобы получить вопрос</div>
+
+  <button id="next-category" onclick="nextCategoryQuestion()">Дальше</button>
 
   <script>
     const questions = {
       love: [
         "Можно ли быть в отношениях и всё равно чувствовать себя одиноким?",
         "Чего ты больше всего боишься в любви?",
-        "Что бы ты выбрал(а): узнать всю правду или остаться в счастливом неведении?",
         "Можно ли любить, но не хотеть быть вместе?",
-        "Как ты понял(а), что влюблён(а)?",
         "Ты больше боишься быть покинутым(ой) или поглощённым(ой)?"
       ],
       intimacy: [
         "Когда ты в последний раз по-настоящему открывался(ась) перед кем-то?",
-        "Как ты переживаешь ссоры: замыкаешься или хочешь всё обсудить сразу?",
         "Как ты проявляешь свою любовь — словами или действиями?",
         "Какие мелочи в отношениях для тебя самые ценные?"
       ],
       conflict: [
-        "Нужно ли рассказывать партнёру о прошлом? Где граница откровенности?",
         "Считается ли флирт без намерений — изменой?",
         "Какие границы для тебя важны в отношениях?",
-        "Были ли у тебя отношения, в которых ты потерял(а) себя? Почему это произошло?"
+        "Были ли у тебя отношения, в которых ты потерял(а) себя?"
       ],
       dreams: [
         "Как понять, что ты с 'тем самым' человеком?",
         "Ты бы хотел(а), чтобы в тебя влюбились 'как в кино' или 'как в жизни'?",
-        "Должны ли влюблённые быть лучшими друзьями или это разное?",
         "Что важнее — совпадение ценностей или сильное притяжение?"
       ]
     };
 
     const allQuestions = Object.values(questions).flat();
+    const box = document.getElementById("question-box");
+    const nextCatBtn = document.getElementById("next-category");
+    let currentCategory = null;
 
-    function showRandom() {
-      const q = allQuestions[Math.floor(Math.random() * allQuestions.length)];
-      document.getElementById("question-box").innerText = q;
+    function fadeOutIn(callback) {
+      box.style.opacity = 0;
+      setTimeout(() => {
+        callback();
+        box.style.opacity = 1;
+      }, 250);
     }
 
-    function showCategory(cat) {
-      const q = questions[cat][Math.floor(Math.random() * questions[cat].length)];
-      document.getElementById("question-box").innerText = q;
+    function showRandom() {
+      currentCategory = null;
+      nextCatBtn.style.display = "none";
+      fadeOutIn(() => {
+        const q = allQuestions[Math.floor(Math.random() * allQuestions.length)];
+        box.innerText = q;
+      });
     }
 
     function toggleCategories() {
       const el = document.getElementById("categoryButtons");
       el.style.display = el.style.display === "block" ? "none" : "block";
+      nextCatBtn.style.display = "none";
+    }
+
+    function chooseCategory(cat) {
+      currentCategory = cat;
+      nextCatBtn.style.display = "block";
+      nextCategoryQuestion();
+    }
+
+    function nextCategoryQuestion() {
+      if (!currentCategory) return;
+      fadeOutIn(() => {
+        const q = questions[currentCategory][Math.floor(Math.random() * questions[currentCategory].length)];
+        box.innerText = q;
+      });
     }
   </script>
 </body>
