@@ -7,11 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #1e002e;
+      background: linear-gradient(180deg, #1e002e 0%, #3b0059 100%);
       color: #f0f0f0;
       font-family: 'Manrope', sans-serif;
       margin: 0;
-      padding: 40px 20px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -23,7 +23,6 @@
       margin-bottom: 20px;
       text-align: center;
       font-weight: 600;
-      letter-spacing: 0.5px;
     }
 
     .intro p {
@@ -54,7 +53,6 @@
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
       display: block;
       font-weight: 600;
-      letter-spacing: 0.3px;
     }
 
     button:hover {
@@ -62,11 +60,15 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     }
 
-    #question-box {
+    .question-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
       width: 100%;
       max-width: 640px;
-      min-height: 130px;
-      margin-top: 30px;
+      flex-grow: 1;
+      padding-bottom: 20px;
     }
 
     .question-card {
@@ -80,9 +82,8 @@
       color: #f9f9f9;
       transition: opacity 0.4s ease;
       opacity: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100%;
+      margin-bottom: 20px;
     }
 
     .category-buttons {
@@ -104,7 +105,13 @@
 
     #next-question {
       display: none;
-      margin-top: 20px;
+    }
+
+    @media (max-height: 700px) {
+      .question-card {
+        font-size: 19px;
+        padding: 24px 20px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -114,12 +121,10 @@
 
       .intro p {
         font-size: 15px;
-        line-height: 1.6;
       }
 
       .question-card {
-        font-size: 19px;
-        padding: 24px;
+        font-size: 18px;
       }
 
       button {
@@ -149,21 +154,20 @@
     <button onclick="chooseCategory('dreams')">Ожидания и мечты</button>
   </div>
 
-  <div id="question-box">
+  <div class="question-container">
     <div class="question-card" id="questionCard">Нажми «Случайный вопрос» — и пусть начнётся душевный диалог</div>
+    <button id="next-question" onclick="nextQuestion()">Дальше</button>
   </div>
-
-  <button id="next-question" onclick="nextQuestion()">Дальше</button>
 
   <script>
     const questions = {
       love: [
         "Можно ли быть в отношениях и всё равно чувствовать себя одиноким?",
-        "Чего ты больше всего боишься в любви?",
-        "Можно ли любить, но не хотеть быть вместе?",
+        "Чего ты больше всего боишься в любви?","Можно ли любить, но не хотеть быть вместе?",
         "Ты больше боишься быть покинутым(ой) или поглощённым(ой)?"
       ],
-      intimacy: ["Когда ты в последний раз по-настоящему открывался(ась) перед кем-то?",
+      intimacy: [
+        "Когда ты в последний раз по-настоящему открывался(ась) перед кем-то?",
         "Как ты проявляешь свою любовь — словами или действиями?",
         "Какие мелочи в отношениях для тебя самые ценные?"
       ],
