@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoulTalk</title>
 <style>
   body {
     background-color: #1e002e;
     color: #fff;
     font-family: 'Segoe UI', sans-serif;
-    text-align: center;
-    padding: 30px 20px;
     margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
   }
 
   h1 {
-    font-size: 34px;
-    margin-bottom: 5px;
-    letter-spacing: 1px;
+    font-size: 30px;
+    margin-bottom: 12px;
+    text-align: center;
   }
 
   p {
     font-size: 16px;
-    margin-bottom: 30px;
-    color: #c9c9c9;
+    color: #d6d6d6;
+    text-align: center;
+    max-width: 500px;
+    line-height: 1.4;
   }
 
   button {
@@ -31,52 +37,57 @@
     padding: 15px 25px;
     color: white;
     font-size: 17px;
-    margin: 10px auto;
+    margin: 12px auto;
     cursor: pointer;
-    border-radius: 12px;
-    width: 90%;
+    border-radius: 14px;
+    width: 100%;
     max-width: 320px;
-    display: block;
     transition: transform 0.2s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
 
   button:hover {
-    transform: scale(1.04);
+    transform: scale(1.03);
   }
 
   #question-box {
-    margin-top: 40px;
-    font-size: 20px;
-    line-height: 1.6;
-    padding: 30px 20px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 30px;
     background-color: #2a0052;
-    border-radius: 18px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    padding: 24px 20px;
+    font-size: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    max-width: 600px;
+    width: 100%;
     transition: opacity 0.3s ease;
+    text-align: center;
+    line-height: 1.6;
   }
 
   .category-buttons {
     margin-top: 20px;
     display: none;
+    width: 100%;
+  }
+
+  .category-buttons button {
+    margin-top: 10px;
   }
 
   @media (min-width: 768px) {
-    button {
-      width: auto;
+    h1 {
+      font-size: 36px;
     }
 
     #question-box {
       font-size: 22px;
     }
   }
-</style> 
+</style>
 </head>
 <body>
   <h1>SoulTalk</h1>
-  <p>Откровенные и глубокие вопросы про любовь, одиночество и отношения</p>
+ <p>Откровенные, душевные и спорные вопросы про отношения, одиночество, любовь и близость. Отвечай сам(а), обсуждай с друзьями или запускай тёплый разговор с кем-то важным.</p>
 
   <button onclick="showRandom()">Случайный вопрос</button>
   <button onclick="toggleCategories()">Категории</button>
